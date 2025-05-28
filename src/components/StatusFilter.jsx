@@ -13,7 +13,7 @@ const StatusFilter = () => {
     // dispatch(selectFilterStatus(newFilter));
     console.log(
       "Dispatched action to change filter status to:",
-      dispatch(selectFilterStatus(newFilter))
+      dispatch(selectFilterStatus(newFilter)),
     );
   };
 

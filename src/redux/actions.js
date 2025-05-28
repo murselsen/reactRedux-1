@@ -1,5 +1,3 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction } from "@reduxjs/toolkit";
 
-export const selectFilterStatus = createAction('filters/selectFilterStatus');
-
-
+export const selectFilterStatus = createAction("filters/selectFilterStatus");
