@@ -1,4 +1,4 @@
-import { FiltersActions } from "../contants";
+import { TaskActions } from "../contants";
 
 const initialState = {
   items: [
@@ -12,15 +12,18 @@ const initialState = {
 
 const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FiltersActions.ADD_TASK:
-      const newTask = {
-        id: state.items.length,
-        text: action.payload.text, // Use the text from the action payload
-        completed: false, // New tasks are not completed by default
-      };
+    case TaskActions.ADD_TASK:
+      console.log("Redux - Handling ADD_TASK action:", action.payload);
       return {
         ...state,
-        items: [...state.items, newTask],
+        items: [...state.items, { id: state.items.length, ...action.payload }],
+      };
+    
+    case TaskActions.DELETE_TASK:
+      console.log("Redux - Handling DELETE_TASK action:", action.payload);
+      return {
+        ...state,
+        items: state.items.filter((task) => task.id !== action.payload.id),
       };
     default:
       return state; // Return the current state if no action matches

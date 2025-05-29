@@ -1,6 +1,9 @@
 const FiltersActions = {
-  ADD_TASK: "ADD_TASK",
-  REMOVE_TASK: "REMOVE_TASK",
+  SELECT_FILTER_STATUS: "filters/selectFilterStatus",
+};
+const TaskActions = {
+  ADD_TASK: "tasks/addTask",
+  DELETE_TASK: "tasks/deleteTask",
 };
 
-export { FiltersActions };
+export { FiltersActions, TaskActions };

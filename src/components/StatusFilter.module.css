@@ -1,0 +1,21 @@
+.StatusFilter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 20px;
+}
+
+.StatusFilter .Info {
+  display: flex;
+  flex-direction: column;
+}
+
+.StatusFilter .Action {
+  align-content: center;
+}
+.StatusFilter .Action .Select {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 20px;
+  border: 0px;
+}

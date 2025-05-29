@@ -1,33 +1,45 @@
 import { useDispatch } from "react-redux";
-import { FiltersActions } from "../redux/contants";
+import { addTask } from "../redux/actions";
+import { Formik, Form, Field } from "formik";
+import { nanoid } from "nanoid";
+// Css
+import Css from "./TaskForm.module.css";
+
 const TaskForm = () => {
+  const taskInputId = nanoid();
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const taskInput = event.target.elements.taskInput.value;
-    alert(`New task added: ${taskInput}`);
+  const handleSubmit = (values, events) => {
+    console.log("Formik Form Submitted: ", values, events);
 
-    dispatch({
-      type: FiltersActions.ADD_TASK,
-      payload: {
-        text: taskInput,
-      },
-    });
+    dispatch(addTask(values));
   };
+
   return (
-    <form onSubmit={handleSubmit} className="task-form">
-      <label htmlFor="taskInput" className="task-form-label">
-        New Task:
-      </label>
-      <input
-        type="text"
-        name="taskInput"
-        placeholder="New Task Content"
-        required
-      />
-      <button type="submit"> Add </button>
-    </form>
+    <Formik
+      initialValues={{ text: "", completed: false }}
+      onSubmit={handleSubmit}
+    >
+      <Form method="Post" className={Css.Form}>
+        <div className={Css.FormGroup}>
+          <label htmlFor={taskInputId} className={Css.Label}>
+            Task:
+          </label>
+          <Field
+            className={Css.Input}
+            type="text"
+            name="text"
+            id={taskInputId}
+            placeholder="New Task Content"
+          />
+        </div>
+        <div className={Css.FormGroup}>
+          <button type="submit" className={Css.Btn}>
+            Ekle
+          </button>
+        </div>
+      </Form>
+    </Formik>
   );
 };
 

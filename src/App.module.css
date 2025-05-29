@@ -2,12 +2,11 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  
 }
 
-.Container{
+.Container {
   align-self: center;
   width: 600px;
   border: 1px solid #ccc;
-  margin: 0 auto;
- }
+  padding-inline: 10px;
+}

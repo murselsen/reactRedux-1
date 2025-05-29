@@ -1,0 +1,32 @@
+.Form {
+  display: flex;
+  padding: 30px 20px;
+}
+.FormGroup {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: max-content;
+}
+.FormGroup .Label {
+  padding: 10px 5px;
+}
+
+.FormGroup .Input {
+  width: 475px;
+  outline: none;
+  border-color: grey;
+  padding: 5px;
+  border: 0;
+  border-bottom: 1px solid grey;
+}
+
+.FormGroup .Btn {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  border-radius: 0;
+  background-color: #de0664;
+  color: white;
+}

@@ -1,0 +1,49 @@
+.TaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+
+  border-radius: 5px;
+  list-style: none;
+}
+.TaskList .TaskItem {
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.TaskItem .Input,
+.TaskItem .Text {
+  flex: 3;
+}
+.TaskItem .Input {
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  display: none;
+}
+
+.TaskItem .Text.Hide {
+  display: none;
+}
+.TaskItem .Input.Active {
+  display: block;
+}
+
+.TaskItem .Number {
+  text-align: center;
+  font-weight: bold;
+  background-color: blueviolet;
+  color: white;
+  padding: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.TaskItem .Btn {
+  background-color: #de0664;
+  color: white;
+}
