@@ -1,23 +1,19 @@
-import { FiltersActions } from "../contants";
-
+import { createSlice } from "@reduxjs/toolkit";
 // Filters reducer for managing the state of filters in the application
 const initialState = {
   status: "all",
 };
 
-const filtersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FiltersActions.SELECT_FILTER_STATUS:
-      console.log("Action received in filtersReducer:", action);
-      return {
-        ...state,
+const slice = createSlice({
+  name: "filters",
+  initialState: initialState,
+  reducers: {
+    selectFilterStatus: (state, action) => {
+      console.log("Redux Toolkit - Handling SELECT_FILTER_STATUS");
+      state.status = action.payload;
+    },
+  },
+});
 
-        status: action.payload, // Update the status filter with the new value
-      };
-
-    default:
-      return state; // Return the current state if no relevant action is found
-  }
-};
-
-export default filtersReducer;
+export const { selectFilterStatus } = slice.actions;
+export default slice.reducer;

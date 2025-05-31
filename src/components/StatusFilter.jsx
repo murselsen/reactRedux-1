@@ -1,6 +1,5 @@
 // Hook içe aktarıyoruz
 import { useSelector, useDispatch } from "react-redux";
-import { selectFilterStatus } from "../redux/actions";
 
 // Css
 import Css from "./StatusFilter.module.css";
@@ -10,41 +9,21 @@ const StatusFilter = () => {
 
   // 2. Redux durumundan filtre değerini alıyoruz
   const tasks = useSelector((state) => state.tasks.items);
-  const filter = useSelector((state) => state.filters.status);
-  console.log("Current filter status:", filter);
+  const filterStatus = useSelector((state) => state.filters.status);
 
   const handleFilterChange = (e) => {
     e.preventDefault();
 
     const newFilter = e.target.value;
-    console.log("Filter changed to:", newFilter);
 
-    dispatch(selectFilterStatus(newFilter));
+    dispatch({
+      type: "filters/selectFilterStatus",
+      payload: newFilter,
+    });
   };
 
   return (
     <div className={Css.StatusFilter}>
-      {/* <button
-        onClick={() => {
-          handleFilterChange("all");
-        }}
-      >
-        All <b>{filter === "all" && "|is active|"}</b>
-      </button>
-      <button
-        onClick={() => {
-          handleFilterChange("active");
-        }}
-      >
-        Active <b>{filter === "active" && " |is active|"}</b>
-      </button>
-      <button
-        onClick={() => {
-          handleFilterChange("completed");
-        }}
-      >
-        Completed <b>{filter === "completed" && "|is active|"}</b>
-      </button> */}
       <div className={Css.Info}>
         <span className={Css.InfoItem}>
           <b>All:</b> {tasks.length}
@@ -57,7 +36,11 @@ const StatusFilter = () => {
         </span>
       </div>
       <div className={Css.Action}>
-        <select className={Css.Select} onChange={handleFilterChange}>
+        <select
+          className={Css.Select}
+          defaultValue={filterStatus}
+          onChange={handleFilterChange}
+        >
           <option value="all">All</option>
           <option value="active">Active</option>
           <option value="completed">Completed</option>

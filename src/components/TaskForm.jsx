@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { addTask } from "../redux/actions";
 import { Formik, Form, Field } from "formik";
 import { nanoid } from "nanoid";
+import { addTask } from "../redux/stores/tasks";
 // Css
 import Css from "./TaskForm.module.css";
 

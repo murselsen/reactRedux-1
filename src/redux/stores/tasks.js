@@ -1,5 +1,3 @@
-import { TaskActions } from "../contants";
-
 const initialState = {
   items: [
     { id: 0, text: "Learn HTML and CSS", completed: true },
@@ -10,24 +8,28 @@ const initialState = {
   ],
 };
 
-const tasksReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case TaskActions.ADD_TASK:
-      console.log("Redux - Handling ADD_TASK action:", action.payload);
-      return {
-        ...state,
-        items: [...state.items, { id: state.items.length, ...action.payload }],
-      };
-    
-    case TaskActions.DELETE_TASK:
-      console.log("Redux - Handling DELETE_TASK action:", action.payload);
-      return {
-        ...state,
-        items: state.items.filter((task) => task.id !== action.payload.id),
-      };
-    default:
-      return state; // Return the current state if no action matches
-  }
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-export default tasksReducer;
+const slice = createSlice({
+  name: "tasks",
+  initialState: initialState,
+  reducers: {
+    addTask: (state, action) => {
+      console.log("Redux Toolkit - Handling ADD_TASK");
+
+      const item = {
+        id: state.items.length,
+        ...action.payload,
+      };
+      console.log("New task item:", item);
+      state.items.push(item);
+    },
+    deleteTask: (state, action) => {
+      console.log
+    }
+  },
+});
+
+console.log("Tasks Slice Actions:", slice.actions);
+export const { addTask } = slice.actions;
+export default slice.reducer;

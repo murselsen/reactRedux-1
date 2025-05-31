@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Redux User Actions
-import { deleteTask } from "../redux/actions";
 // Css
 import Css from "./TaskList.module.css";
 
@@ -22,7 +20,10 @@ const TaskList = () => {
   const handleTaskDelete = (id) => {
     console.log("TaskList - handleTaskDelete called with id:", id);
     // Dispatch the delete action here if needed
-    dispatch(deleteTask(id));
+    dispatch({
+      type: "tasks/deleteTask",
+      payload: id,
+    });
   };
 
   // Tasks Listesini Al
@@ -49,41 +50,20 @@ const TaskList = () => {
   );
 };
 
-const TaskItem = ({ task, handleTaskDelete }) => {
-  const [taskEdit, setTaskEdit] = useState(null);
+const TaskItem = ({
+  task,
+
+  handleTaskDelete,
+}) => {
   return (
     <li style={{ width: "100%" }} className={Css.TaskItem}>
       <b className={Css.Number} style={{ display: "inline", marginInline: 10 }}>
         {task.id}
       </b>
-      <p
-        className={taskEdit ? `${Css.Text} ${Css.Hide}` : Css.Text}
-        onDoubleClick={() => {
-          setTaskEdit(task.text);
-        }}
-        style={{ display: "inline", marginInline: 10 }}
-      >
+      <p className={Css.Text} style={{ display: "inline", marginInline: 10 }}>
         {task.text}
       </p>
 
-      <input
-        type="text"
-        onDoubleClick={() => {
-          setTaskEdit(null);
-        }}
-        className={taskEdit ? `${Css.Input} ${Css.Active}` : Css.Input}
-        value={task.text}
-        checked={task.completed}
-        onChange={() => {
-          // Here you would typically dispatch an action to toggle the task's completion status
-          console.log(
-            "TaskItem - Checkbox clicked for task:",
-            task.id,
-            task.text,
-          );
-        }}
-        placeholder="Task Content"
-      />
       <button
         onClick={() => {
           handleTaskDelete(task.id);
