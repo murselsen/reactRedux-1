@@ -25,8 +25,9 @@ const slice = createSlice({
       state.items.push(item);
     },
     deleteTask: (state, action) => {
-      console.log
-    }
+      console.log("Redux Toolkit - HandLing DELETE_TASK", action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+    },
   },
 });
 

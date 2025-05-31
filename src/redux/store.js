@@ -4,7 +4,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import filtersReducer from "./stores/filters"; // Filters reducer
 import tasksReducer from "./stores/tasks"; // Tasks reducer
 
-
 export const store = configureStore({
   reducer: {
     filters: filtersReducer, // Filters reducer
